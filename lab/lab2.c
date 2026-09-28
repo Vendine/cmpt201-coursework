@@ -1,6 +1,7 @@
 #define _POSIX_C_SOURCE 200809L
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <stdbool.h>
 #include <sys/types.h>
 #include <unistd.h>
@@ -18,6 +19,7 @@ int main(void){
             perror("getline failed");
             exit(EXIT_FAILURE);
         }
+        program[strcspn(program, "\n")] = '\0';
         
         pid_t pid = fork();
         if (pid == -1) {
